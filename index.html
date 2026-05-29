@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GWY Financial Group</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f6f9; color: #333; }
+    header { background: #1a3a5c; color: white; padding: 18px 40px; display: flex; align-items: center; justify-content: space-between; }
+    header h1 { font-size: 1.5rem; letter-spacing: 1px; }
+    header span { font-size: 0.9rem; opacity: 0.8; }
+    .hero { background: linear-gradient(135deg, #1a3a5c 0%, #2e6da4 100%); color: white; text-align: center; padding: 60px 20px; }
+    .hero h2 { font-size: 2rem; margin-bottom: 12px; }
+    .hero p { font-size: 1.1rem; opacity: 0.9; }
+    .form-section { max-width: 600px; margin: 50px auto; background: white; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); padding: 40px; }
+    .form-section h3 { font-size: 1.4rem; color: #1a3a5c; margin-bottom: 8px; }
+    .form-section p.subtitle { color: #666; margin-bottom: 28px; font-size: 0.95rem; }
+    .form-group { margin-bottom: 20px; }
+    label { display: block; font-weight: 600; margin-bottom: 6px; color: #1a3a5c; font-size: 0.95rem; }
+    label span.required { color: #e74c3c; margin-left: 3px; }
+    input[type="text"], input[type="tel"], input[type="email"], select { width: 100%; padding: 11px 14px; border: 1.5px solid #d0d9e4; border-radius: 6px; font-size: 1rem; transition: border-color 0.2s; background: #fafcff; }
+    input:focus, select:focus { outline: none; border-color: #2e6da4; background: white; }
+    .radio-group { display: flex; gap: 24px; margin-top: 4px; }
+    .radio-group label { font-weight: 400; color: #333; display: flex; align-items: center; gap: 6px; cursor: pointer; }
+    button[type="submit"] { width: 100%; padding: 13px; background: #1a3a5c; color: white; border: none; border-radius: 6px; font-size: 1.05rem; font-weight: 600; cursor: pointer; transition: background 0.2s; margin-top: 8px; }
+    button[type="submit"]:hover { background: #2e6da4; }
+    .success-msg { display: none; background: #e8f5e9; border: 1px solid #a5d6a7; color: #2e7d32; padding: 14px; border-radius: 6px; margin-top: 16px; text-align: center; font-weight: 600; }
+    footer { text-align: center; padding: 30px; color: #888; font-size: 0.85rem; }
+    @media (max-width: 640px) { .form-section { margin: 20px 16px; padding: 24px; } .hero h2 { font-size: 1.5rem; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>GWY Financial Group</h1>
+    <span>gwyfinancialgroup.com</span>
+  </header>
+  <div class="hero">
+    <h2>专业金融服务，为您的未来护航</h2>
+    <p>填写下方表单，我们的顾问将尽快与您联系</p>
+  </div>
+  <div class="form-section">
+    <h3>免费咨询预约</h3>
+    <p class="subtitle">请填写您的基本信息，我们将在 1 个工作日内与您联系。</p>
+    <form id="contactForm" action="https://formspree.io/f/mkoeykkn" method="POST">
+      <div class="form-group">
+        <label>姓名 <span class="required">*</span></label>
+        <input type="text" name="姓名" placeholder="请输入您的姓名" required />
+      </div>
+      <div class="form-group">
+        <label>性别 <span class="required">*</span></label>
+        <div class="radio-group">
+          <label><input type="radio" name="性别" value="男" required /> 男</label>
+          <label><input type="radio" name="性别" value="女" /> 女</label>
+          <label><input type="radio" name="性别" value="不愿透露" /> 不愿透露</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>所在省份 <span class="required">*</span></label>
+        <select name="省份" required>
+          <option value="">-- 请选择省份 --</option>
+          <option>Alberta</option>
+          <option>British Columbia</option>
+          <option>Manitoba</option>
+          <option>New Brunswick</option>
+          <option>Newfoundland and Labrador</option>
+          <option>Nova Scotia</option>
+          <option selected>Ontario</option>
+          <option>Prince Edward Island</option>
+          <option>Quebec</option>
+          <option>Saskatchewan</option>
+          <option>Northwest Territories</option>
+          <option>Nunavut</option>
+          <option>Yukon</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>电话号码 <span class="required">*</span></label>
+        <input type="tel" name="电话" placeholder="例：416-123-4567" required />
+      </div>
+      <div class="form-group">
+        <label>电子邮箱 <span class="required">*</span></label>
+        <input type="email" name="email" placeholder="例：yourname@email.com" required />
+      </div>
+      <input type="hidden" name="_subject" value="新客户咨询 - GWY Financial Group" />
+      <input type="hidden" name="_language" value="zh" />
+      <button type="submit">提交咨询 →</button>
+    </form>
+    <div class="success-msg" id="successMsg">
+      ✅ 提交成功！我们会尽快与您联系，感谢您的信任。
+    </div>
+  </div>
+  <footer>&copy; 2025 GWY Financial Group &nbsp;|&nbsp; gwyfinancialgroup.com &nbsp;|&nbsp; Ontario, Canada</footer>
+  <script>
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const data = new FormData(form);
+      const res = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('successMsg').style.display = 'block';
+      } else {
+        alert('提交失败，请稍后再试或直接联系我们。');
+      }
+    });
+  </script>
+</body>
+</html>
